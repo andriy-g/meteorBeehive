@@ -33,7 +33,7 @@ if (Meteor.isClient) {
         var mitCountBox = $(event.target).find('input[name=MitCount]');
         var mitCountText = mitCountBox.val();
 
-        if(hiveNameText.length > 0) {
+        if(hiveNameText.length > 0 && dateText.length > 0 && durationBox.length > 0 && mitCountText.length > 0) {
               Messages.insert(
               {
                 name: hiveNameText,
