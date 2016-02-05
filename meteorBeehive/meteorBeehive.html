@@ -1,0 +1,47 @@
+<template name="layout">
+  <body>
+    <h1>Bee Hive Data Log</h1>
+
+    {{> yield}}
+  </body>
+</template>
+
+
+
+  <template name="meteorBeeHive">
+    <div class='col-xs-3'>
+    <form>
+      <div  class="form-group">
+        <label for="meteorBeeHive">Hive Name</label>
+        <input type="text"  class="form-control"  name="HiveName">
+    </div>
+
+    <div  class="form-group">
+      <label for="meteorBeeHive">Observation Date</label>
+      <input type="text"  class="form-control"  name="ObsDate" placeholder="YYYY-MM-DD">
+  </div>
+
+  <div  class="form-group">
+    <label for="meteorBeeHive">Duration</label>
+    <input type="text"  class="form-control"  name="Duration" placeholder="YYYY-MM-DD">
+</div>
+
+<div  class="form-group">
+  <label for="meteorBeeHive">Mite Count</label>
+  <input type="text"  class="form-control"  name="MitCount">
+</div>
+
+
+
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+     {{#each messages}}
+      <p> <strong>{{ name }}</strong>:  {{date}}: {{duration}}: {{mitCount}} - {{ createdOn }}</p>
+      {{/each}}
+  </div>
+  </template>
+
+
+  <template name="message">
+    <p>{{name}}: {{date}}: {{duration}}: {{mitCount}}</p>
+  </template>
