@@ -36,7 +36,8 @@
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
      {{#each messages}}
-      <p> <strong>{{ name }}</strong>:  {{date}}: {{duration}}: {{mitCount}} - {{ createdOn }}</p>
+      <p> <strong>Hive Name</strong> {{ name }}: <strong>Observation Date</strong> {{ date }}:
+          <strong>Duration</strong> {{ duration }}: <strong>Mite Count</strong> {{ mitCount }} - {{ createdOn }}</p>
       {{/each}}
   </div>
   </template>
