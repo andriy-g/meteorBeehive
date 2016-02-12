@@ -1,14 +1,45 @@
 Messages = new Mongo.Collection("messages");
 
+// Show date for a specific hive name
+Router.route('/hive/:name', function() {
+  this.render('message', {
+    data: function () {
+      return { messages: Messages.find({name: this.params.name}) };
+    }
+  });
+  this.layout('layout');
+},
+{
+  name: 'message.show'
+});
 
+
+// HomePage
 Router.route('/', function() {
   this.render('meteorBeeHive');
   this.layout('layout');
 });
 
+// Admin page
+Router.route('/admin', function() {
+  this.render('admin');
+  this.layout('layout');
+});
+
+
+// Hive/Name shows all data entered into the database so far for a given hive name
+// Router.route('/home', function() {
+//   this.render('meteorBeeHive');
+//   this.layout('layout');
+// });
+
+
+
+
 if (Meteor.isClient) {
   Meteor.subscribe("messages");
-  Template.meteorBeeHive.helpers({
+
+  Template.admin.helpers({
     "messages": function() {
       return Messages.find(
         {},
@@ -16,6 +47,7 @@ if (Meteor.isClient) {
       //return all message objects, or an empty object if DB is invalid
     }
   });
+
   Template.meteorBeeHive.events(
     {
       "submit form": function (event) {
@@ -46,6 +78,7 @@ if (Meteor.isClient) {
               dateBox.val("");
               durationBox.val("");
               mitCountBox.val("");
+              Router.go('/hive/' + hiveNameText);
         }
         else {
           //alert (name and message are both required.)

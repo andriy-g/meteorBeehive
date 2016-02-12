@@ -12,37 +12,42 @@
     <div class='col-xs-3'>
     <form>
       <div  class="form-group">
-        <label for="meteorBeeHive">Hive Name</label>
+        <label for="HiveName">Hive Name</label>
         <input type="text"  class="form-control"  name="HiveName">
     </div>
 
     <div  class="form-group">
-      <label for="meteorBeeHive">Observation Date</label>
+      <label for="ObsDate">Observation Date</label>
       <input type="date"  class="form-control"  name="ObsDate" placeholder="YYYY-MM-DD">
   </div>
 
   <div  class="form-group">
-    <label for="meteorBeeHive">Duration</label>
+    <label for="Duration">Duration</label>
     <input type="number"  class="form-control"  name="Duration">
 </div>
 
 <div  class="form-group">
-  <label for="meteorBeeHive">Mite Count</label>
+  <label for="MitCount">Mite Count</label>
   <input type="number"  class="form-control"  name="MitCount">
 </div>
 
 
-
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
-     {{#each messages}}
-      <p> <strong>Hive Name</strong> {{ name }}: <strong>Observation Date</strong> {{ date }}:
-          <strong>Duration</strong> {{ duration }}: <strong>Mite Count</strong> {{ mitCount }} - {{ createdOn }}</p>
-      {{/each}}
-  </div>
+    <!--Moved name=admin to its new template  -->
+</div>
   </template>
 
+<template name="admin">
+       {{#each messages}}
+        <p> <strong>Hive Name</strong> {{ name }}: <strong>Observation Date</strong> {{ date }}:
+            <strong>Duration</strong> {{ duration }}: <strong>Mite Count</strong> {{ mitCount }} - {{ createdOn }}</p>
+        {{/each}}
+</template>
 
   <template name="message">
-    <p>{{name}}: {{date}}: {{duration}}: {{mitCount}}</p>
+    {{#each messages}}
+     <p> <strong>Hive Name</strong> {{ name }}: <strong>Observation Date</strong> {{ date }}:
+         <strong>Duration</strong> {{ duration }}: <strong>Mite Count</strong> {{ mitCount }} - {{ createdOn }}</p>
+     {{/each}}
   </template>
