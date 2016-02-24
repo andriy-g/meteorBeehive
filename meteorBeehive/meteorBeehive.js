@@ -26,14 +26,38 @@ Router.route('/admin', function() {
   this.layout('layout');
 });
 
+//Export Data to Excel
+Router.route('/export', function() {
+  var data = Posts.find().fetch();
+  var fields = [
+    {
+      key: 'id',
+      title: 'URL',
+      transform: function(val, doc) {
+        return Router.url('posts.show', { _id: val });
+      }
+    },
+    {
+      key: 'message',
+      title: 'Message'
+    },
+    {
+      key: 'viewsCount',
+      title: 'Views',
+      type: 'number'
+    }
+  ];
 
-// Hive/Name shows all data entered into the database so far for a given hive name
-// Router.route('/home', function() {
-//   this.render('meteorBeeHive');
-//   this.layout('layout');
-// });
+  var title = 'Posts';
+  var file = Excel.export(title, fields, data);
+  var headers = {
+    'Content-type': 'application/vnd.openxmlformats',
+    'Content-Disposition': 'attachment; filename=' + title + '.xlsx'
+  };
 
-
+  this.response.writeHead(200, headers);
+  this.response.end(file, 'binary');
+}, { where: 'server' });
 
 
 if (Meteor.isClient) {
