@@ -26,29 +26,37 @@ Router.route('/admin', function() {
   this.layout('layout');
 });
 
+
+// name: hiveNameText,
+// date: dateText,
+// duration: durationText,
+// mitCount: mitCountText,
+
 //Export Data to Excel
 Router.route('/export', function() {
   var data = Posts.find().fetch();
   var fields = [
     {
-      key: 'id',
-      title: 'URL',
-      transform: function(val, doc) {
-        return Router.url('posts.show', { _id: val });
-      }
+      key: 'name',
+      title: 'Hive Name' //column in excel sheet
     },
     {
-      key: 'message',
-      title: 'Message'
+      key: 'date',
+      title: 'Date'
     },
     {
-      key: 'viewsCount',
-      title: 'Views',
+      key: 'duration',
+      title: 'Duration',
+      type: 'number'
+    },
+    {
+      key: 'mitCount',
+      title: 'Mite Count',
       type: 'number'
     }
   ];
 
-  var title = 'Posts';
+  var title = 'Bee Hive Data';
   var file = Excel.export(title, fields, data);
   var headers = {
     'Content-type': 'application/vnd.openxmlformats',
