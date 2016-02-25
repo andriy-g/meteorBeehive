@@ -56,6 +56,9 @@ Router.route('/export', function() {
     }
   ];
 
+//atmospherejs.com/nicolaslopezj/excel-export
+//The code used is from website above by nicolaslopezj
+
   var title = 'BeeHiveData';
   var file = Excel.export(title, fields, data);
   var headers = {
