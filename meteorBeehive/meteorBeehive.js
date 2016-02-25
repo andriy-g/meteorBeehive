@@ -34,7 +34,7 @@ Router.route('/admin', function() {
 
 //Export Data to Excel
 Router.route('/export', function() {
-  var data = Posts.find().fetch();
+  var data = Messages.find().fetch();
   var fields = [
     {
       key: 'name',
@@ -56,7 +56,7 @@ Router.route('/export', function() {
     }
   ];
 
-  var title = 'Bee Hive Data';
+  var title = 'BeeHiveData';
   var file = Excel.export(title, fields, data);
   var headers = {
     'Content-type': 'application/vnd.openxmlformats',
